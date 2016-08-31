@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+<!-- console로 log 남기기 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>
+                ▶ %-5level %d{HH:mm:ss.SSS} [%thread] %logger[%method:%line] - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="consoleForLoginInterceptor" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>
+                ▷ %-5level %d{HH:mm:ss} %logger[%method:%line] - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    
+    <logger name="com.test" level="info">
+    <root level="info">
+        <appender-ref ref="debug" />
+    </root>
+    </logger>
+    
+    
+    <logger name="org.springframework" level="info" />
+    <root level="info">
+        <appender-ref ref="console" />
+    <!--     <appender-ref ref="file" /> -->
+    </root>
+        
+</configuration>

@@ -1,0 +1,1 @@
+[{colList=[{Field=id, Type=int(11), Null=YES, Extra=, Key=}, {Field=name, Type=varchar(222), Null=YES, Extra=, Key=}, {Field=pwd, Type=varchar(25), Null=YES, Extra=, Key=}], tableNm=test002}, {colList=[{Field=id, Type=int(11), Null=YES, Extra=, Key=}, {Field=name, Type=varchar(222), Null=YES, Extra=, Key=}, {Field=pwd, Type=varchar(25), Null=YES, Extra=, Key=}], tableNm=test007}]

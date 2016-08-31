@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>SimpleTree Demo</title>
+	<style>
+.tree .button {
+	cursor: pointer;
+}
+	</style>
+</head>
+
+<body>
+
+	<h1>
+		<a href="https://github.com/innoq/simpletree">SimpleTree</a>
+		Demo
+	</h1>
+	<p>intentionally basic (e.g. no custom styling)</p>
+
+	<ul class="hierarchy">
+            <li>
+                folder1
+                <ul>
+                    <li>bar</li>
+                    <li>baz2</li>
+                </ul>
+            
+            
+            </li>
+            <li>
+                folder2
+                <ul>
+                    <li>foo
+                    	<ul>
+                    	</ul>
+                    </li>
+                    <li>bar</li>
+                    <li>baz2</li>
+                </ul>
+            </li>
+   </ul>
+
+	<hr>
+
+	
+<script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
+	<script src="simpletree.js"></script>
+	<script>jQuery("ul.hierarchy").simpletree();</script>
+	
+</body>
+
+</html>

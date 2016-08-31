@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	   		">
+
+	<!-- 프로퍼티 정의. -->
+	<context:property-placeholder location="/WEB-INF/jdbc.properties,/WEB-INF/mybatis/mybatis.properties" />
+	<!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close" p:driverClass="oracle.jdbc.driver.OracleDriver"
+		p:jdbcUrl="jdbc:oracle:thin:@172.16.111.126:1522:hao" p:user="blueberry2" p:password="blueberry2"
+		p:acquireIncrement="10" p:idleConnectionTestPeriod="120" p:maxPoolSize="100"
+		p:maxStatements="50" p:minPoolSize="15" /> -->
+		
+		
+	<!-- 데이터소스#1 -->	
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+	    <property name="url" value="jdbc:oracle:thin:@172.16.111.126:1522:hao"/>
+	    <property name="username"  value="blueberry2"/>
+	    <property name="password" value="blueberry2"/>
+	</bean> -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	    <property name="url" value="jdbc:mysql://localhost:3306/test002"/>
+	    <property name="username"  value="root"/>
+	    <property name="password" value="1114"/>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource" />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />	
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="WEB-INF/mybatis/sqlmap-config.xml" />
+        <property name="mapperLocations" value="classpath*:blueberry/mapper/ds1/*.xml" />
+    </bean>
+    
+    <bean id="sqlSessionTpl1" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sqlSessionFactory" />
+ 	</bean>
+ 	
+ 	
+ 	
+ 	<!-- 데이터소스#2 -->
+	<bean id="datasource2" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	    <property name="url" value="jdbc:mysql://localhost:3306/test002"/>
+	    <property name="username"  value="root"/>
+	    <property name="password" value="1114"/>
+	</bean>
+		
+	<bean id="transactionManager2"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="datasource2" />
+
+	<tx:annotation-driven transaction-manager="transactionManager2" />	
+
+    <bean id="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="datasource2" />
+        <property name="configLocation" value="WEB-INF/mybatis/sqlmap-config2.xml" />
+        <property name="mapperLocations" value="classpath*:blueberry/mapper/ds2/*.xml" />
+    </bean>
+    
+    
+    <bean id="sqlSessionTpl2" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sqlSessionFactory2" />
+ 	</bean>
+
+   
+</beans>
